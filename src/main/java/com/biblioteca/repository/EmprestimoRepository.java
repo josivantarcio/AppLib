@@ -14,4 +14,6 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     
     @Query("SELECT COUNT(e) FROM Emprestimo e WHERE e.aluno.id = :alunoId AND e.dataDevolucao IS NULL")
     long countEmprestimosAtivos(Long alunoId);
+
+    long countByLivroId(Long livroId);
 } 
