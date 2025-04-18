@@ -1,1 +1,36 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Library Management System</span>
+  <span class="spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/books">
+    <mat-icon>book</mat-icon>
+    <span>Books</span>
+  </button>
+  <button mat-menu-item routerLink="/loans">
+    <mat-icon>assignment</mat-icon>
+    <span>Loans</span>
+  </button>
+  <button mat-menu-item routerLink="/users">
+    <mat-icon>people</mat-icon>
+    <span>Users</span>
+  </button>
+</mat-menu>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item routerLink="/profile">
+    <mat-icon>person</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

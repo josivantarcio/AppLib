@@ -1,0 +1,100 @@
+<div class="book-form-container">
+  <h1>{{isEditMode ? 'Edit Book' : 'Add New Book'}}</h1>
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="book-form">
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" placeholder="Book Title">
+        <mat-error *ngIf="bookForm.get('title')?.hasError('required')">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Author</mat-label>
+        <input matInput formControlName="author" placeholder="Author Name">
+        <mat-error *ngIf="bookForm.get('author')?.hasError('required')">
+          Author is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>ISBN</mat-label>
+        <input matInput formControlName="isbn" placeholder="ISBN">
+        <mat-error *ngIf="bookForm.get('isbn')?.hasError('required')">
+          ISBN is required
+        </mat-error>
+        <mat-error *ngIf="bookForm.get('isbn')?.hasError('pattern')">
+          Invalid ISBN format
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Publisher</mat-label>
+        <input matInput formControlName="publisher" placeholder="Publisher">
+        <mat-error *ngIf="bookForm.get('publisher')?.hasError('required')">
+          Publisher is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Publication Year</mat-label>
+        <input matInput formControlName="publicationYear" placeholder="YYYY">
+        <mat-error *ngIf="bookForm.get('publicationYear')?.hasError('required')">
+          Publication year is required
+        </mat-error>
+        <mat-error *ngIf="bookForm.get('publicationYear')?.hasError('pattern')">
+          Invalid year format
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Genre</mat-label>
+        <mat-select formControlName="genre">
+          <mat-option value="FICTION">Fiction</mat-option>
+          <mat-option value="NON_FICTION">Non-Fiction</mat-option>
+          <mat-option value="SCIENCE">Science</mat-option>
+          <mat-option value="HISTORY">History</mat-option>
+          <mat-option value="BIOGRAPHY">Biography</mat-option>
+          <mat-option value="TECHNOLOGY">Technology</mat-option>
+          <mat-option value="OTHER">Other</mat-option>
+        </mat-select>
+        <mat-error *ngIf="bookForm.get('genre')?.hasError('required')">
+          Genre is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Book Description" rows="4"></textarea>
+        <mat-error *ngIf="bookForm.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field class="full-width">
+        <mat-label>Cover Image URL</mat-label>
+        <input matInput formControlName="coverImage" placeholder="Cover Image URL">
+        <mat-error *ngIf="bookForm.get('coverImage')?.hasError('pattern')">
+          Invalid URL format
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-button type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!bookForm.valid">
+        {{isEditMode ? 'Update' : 'Add'}} Book
+      </button>
+    </div>
+  </form>
+</div> 

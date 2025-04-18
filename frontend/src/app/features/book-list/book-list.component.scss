@@ -1,0 +1,52 @@
+.book-list-container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.search-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.table-container {
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-actions {
+  width: 120px;
+  text-align: center;
+}
+
+.mat-row:hover {
+  background-color: #f5f5f5;
+}
+
+.mat-cell {
+  padding: 8px 16px;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+mat-paginator {
+  margin-top: 1rem;
+} 
