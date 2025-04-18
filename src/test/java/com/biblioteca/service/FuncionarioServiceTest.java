@@ -11,6 +11,7 @@ import com.biblioteca.model.enums.Cargo;
 import com.biblioteca.repository.FuncionarioRepository;
 import com.biblioteca.repository.PerfilRepository;
 import com.biblioteca.repository.UsuarioRepository;
+import lombok.Data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

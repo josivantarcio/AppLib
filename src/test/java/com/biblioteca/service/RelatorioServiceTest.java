@@ -65,7 +65,9 @@ class RelatorioServiceTest {
         aluno.setNome("João Silva");
         aluno.setEmail("joao@email.com");
         aluno.setMatricula("2024001");
-        aluno.setAtivo(true);
+        aluno.setCurso("Engenharia de Software");
+        aluno.setAnoIngresso(Year.of(2024));
+        aluno.setTelefone("(11) 98765-4321");
 
         // Configurando empréstimos
         emprestimo1 = new Emprestimo();
@@ -85,14 +87,15 @@ class RelatorioServiceTest {
 
     @Test
     @DisplayName("Deve gerar relatório de empréstimos atrasados em PDF")
-    void gerarRelatorioEmprestimosAtrasadosPDF() throws Exception {
+    void gerarRelatorioEmprestimosAtrasadosPDF() {
         when(emprestimoRepository.findAllAtrasados(any(LocalDateTime.class)))
                 .thenReturn(Arrays.asList(emprestimo1));
 
-        byte[] relatorio = relatorioService.gerarRelatorioEmprestimosAtrasadosPDF();
-
-        assertNotNull(relatorio);
-        assertTrue(relatorio.length > 0);
+        assertDoesNotThrow(() -> {
+            byte[] relatorio = relatorioService.gerarRelatorioEmprestimosAtrasadosPDF();
+            assertNotNull(relatorio);
+            assertTrue(relatorio.length > 0);
+        });
     }
 
     @Test
@@ -102,23 +105,25 @@ class RelatorioServiceTest {
         when(emprestimoRepository.countByLivroId(livro1.getId())).thenReturn(5L);
         when(emprestimoRepository.countByLivroId(livro2.getId())).thenReturn(3L);
 
-        String csv = relatorioService.gerarRelatorioLivrosMaisEmprestadosCSV();
-
-        assertNotNull(csv);
-        assertTrue(csv.contains(livro1.getTitulo()));
-        assertTrue(csv.contains(livro2.getTitulo()));
-        assertTrue(csv.contains("5")); // Quantidade de empréstimos do livro1
-        assertTrue(csv.contains("3")); // Quantidade de empréstimos do livro2
+        assertDoesNotThrow(() -> {
+            String csv = relatorioService.gerarRelatorioLivrosMaisEmprestadosCSV();
+            assertNotNull(csv);
+            assertTrue(csv.contains(livro1.getTitulo()));
+            assertTrue(csv.contains(livro2.getTitulo()));
+            assertTrue(csv.contains("5")); // Quantidade de empréstimos do livro1
+            assertTrue(csv.contains("3")); // Quantidade de empréstimos do livro2
+        });
     }
 
     @Test
     @DisplayName("Deve gerar relatório de estoque em PDF")
-    void gerarRelatorioEstoquePDF() throws Exception {
+    void gerarRelatorioEstoquePDF() {
         when(livroRepository.findAll()).thenReturn(Arrays.asList(livro1, livro2));
 
-        byte[] relatorio = relatorioService.gerarRelatorioEstoquePDF();
-
-        assertNotNull(relatorio);
-        assertTrue(relatorio.length > 0);
+        assertDoesNotThrow(() -> {
+            byte[] relatorio = relatorioService.gerarRelatorioEstoquePDF();
+            assertNotNull(relatorio);
+            assertTrue(relatorio.length > 0);
+        });
     }
 } 

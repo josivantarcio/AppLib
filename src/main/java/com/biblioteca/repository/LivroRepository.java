@@ -9,8 +9,12 @@ import java.util.Optional;
 public interface LivroRepository extends JpaRepository<Livro, Long> {
     Optional<Livro> findByIsbn(String isbn);
     
+    boolean existsByIsbn(String isbn);
+    
     List<Livro> findByTituloContainingIgnoreCase(String titulo);
     
     @Query("SELECT l FROM Livro l WHERE l.quantidadeEstoque > 0 AND l.disponivel = true")
     List<Livro> findAllDisponiveis();
+
+    long countByDisponivelTrue();
 } 

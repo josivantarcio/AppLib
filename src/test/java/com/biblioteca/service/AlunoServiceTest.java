@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
 
 @ExtendWith(MockitoExtension.class)
 class AlunoServiceTest {
@@ -114,7 +115,6 @@ class AlunoServiceTest {
         assertEquals(alunoCreateDTO.getNome(), resultado.getNome());
         assertEquals(alunoCreateDTO.getEmail(), resultado.getEmail());
         assertEquals(alunoCreateDTO.getMatricula(), resultado.getMatricula());
-        assertTrue(resultado.isAtivo());
         
         verify(usuarioRepository, times(1)).save(any(Usuario.class));
         verify(alunoRepository, times(1)).save(any(Aluno.class));

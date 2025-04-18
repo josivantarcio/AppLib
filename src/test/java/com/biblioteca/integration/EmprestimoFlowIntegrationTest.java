@@ -4,6 +4,7 @@ import com.biblioteca.config.TestContainersConfig;
 import com.biblioteca.dto.AlunoCreateDTO;
 import com.biblioteca.dto.EmprestimoCreateDTO;
 import com.biblioteca.dto.LivroDTO;
+import com.biblioteca.dto.AlunoDTO;
 import com.biblioteca.model.Aluno;
 import com.biblioteca.model.Livro;
 import com.biblioteca.repository.AlunoRepository;
@@ -68,7 +69,8 @@ class EmprestimoFlowIntegrationTest extends TestContainersConfig {
         alunoDTO.setCurso("Engenharia");
         alunoDTO.setAnoIngresso(2024);
         alunoDTO.setSenha("senha123");
-        alunoId = alunoService.cadastrar(alunoDTO).getId();
+        AlunoDTO alunoSalvo = alunoService.cadastrar(alunoDTO);
+        alunoId = alunoSalvo.getId();
     }
 
     @Test

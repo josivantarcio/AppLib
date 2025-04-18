@@ -37,7 +37,7 @@ public class RelatorioController {
     @GetMapping("/livros-mais-emprestados/csv")
     @PreAuthorize("hasAnyRole('ADMIN', 'BIBLIOTECARIO')")
     @Operation(summary = "Gera relatório de livros mais emprestados em CSV")
-    public ResponseEntity<String> gerarRelatorioLivrosMaisEmprestadosCSV() {
+    public ResponseEntity<String> gerarRelatorioLivrosMaisEmprestadosCSV() throws Exception {
         String csv = relatorioService.gerarRelatorioLivrosMaisEmprestadosCSV();
         
         return ResponseEntity.ok()

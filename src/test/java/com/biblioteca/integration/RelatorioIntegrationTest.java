@@ -2,6 +2,7 @@ package com.biblioteca.integration;
 
 import com.biblioteca.config.TestContainersConfig;
 import com.biblioteca.dto.AlunoCreateDTO;
+import com.biblioteca.dto.AlunoDTO;
 import com.biblioteca.dto.EmprestimoCreateDTO;
 import com.biblioteca.dto.LivroDTO;
 import com.biblioteca.service.AlunoService;
@@ -42,7 +43,7 @@ class RelatorioIntegrationTest extends TestContainersConfig {
         LivroDTO livro2 = criarLivro("Domain-Driven Design", "Eric Evans", "9780321125217");
 
         // Criar aluno
-        AlunoCreateDTO aluno = criarAluno();
+        AlunoDTO aluno = criarAluno();
 
         // Realizar empréstimos
         realizarEmprestimo(aluno.getId(), livro1.getId());
@@ -59,7 +60,7 @@ class RelatorioIntegrationTest extends TestContainersConfig {
 
     @Test
     @DisplayName("Deve gerar relatório de livros em CSV")
-    void gerarRelatorioCSV() {
+    void gerarRelatorioCSV() throws Exception {
         String csv = relatorioService.gerarRelatorioLivrosMaisEmprestadosCSV();
         assertNotNull(csv);
         assertTrue(csv.contains("Clean Code"));
@@ -76,7 +77,7 @@ class RelatorioIntegrationTest extends TestContainersConfig {
         return livroService.cadastrar(livroDTO);
     }
 
-    private AlunoCreateDTO criarAluno() {
+    private AlunoDTO criarAluno() {
         AlunoCreateDTO alunoDTO = new AlunoCreateDTO();
         alunoDTO.setNome("João Silva");
         alunoDTO.setEmail("joao@email.com");

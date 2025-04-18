@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  flyway:
+    enabled: false
+
+security:
+  jwt:
+    secret: chave-secreta-para-testes-deve-ter-pelo-menos-256-bits
+    expiration: 86400000 

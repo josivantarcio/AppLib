@@ -41,7 +41,7 @@ public class Livro {
     private String genero;
 
     @PositiveOrZero(message = "A quantidade em estoque deve ser maior ou igual a zero")
-    private int quantidadeEstoque;
+    private Integer quantidadeEstoque;
 
     private boolean disponivel = true;
 
@@ -52,4 +52,8 @@ public class Livro {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime dataAtualizacao;
+
+    public boolean isDisponivel() {
+        return quantidadeEstoque > 0;
+    }
 } 

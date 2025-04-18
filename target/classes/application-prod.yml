@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/biblioteca
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+
+security:
+  jwt:
+    secret: ${SECURITY_JWT_SECRET}
+    expiration: 86400000
+
+logging:
+  level:
+    com.biblioteca: INFO
+    org.springframework: INFO 
