@@ -1,4 +1,4 @@
-<div class="book-list-container">
+<div class="book-list">
   <div class="header-actions">
     <h1>Books</h1>
     <button mat-raised-button color="primary" (click)="openAddBookDialog()">
@@ -10,6 +10,7 @@
   <mat-form-field class="search-field">
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Search books..." #input>
+    <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 
   <div class="table-container">

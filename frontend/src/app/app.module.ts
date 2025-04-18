@@ -27,6 +27,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { BookListComponent } from './features/book-list/book-list.component';
 import { BookDetailComponent } from './features/book-detail/book-detail.component';
 import { BookFormComponent } from './features/book-form/book-form.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     FooterComponent,
     BookListComponent,
     BookDetailComponent,
-    BookFormComponent
+    BookFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,11 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     MatSnackBarModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
