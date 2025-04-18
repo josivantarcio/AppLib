@@ -24,9 +24,11 @@ public class ReservaService {
     private final ReservaRepository reservaRepository;
     private final LivroRepository livroRepository;
     private final AlunoRepository alunoRepository;
+    private final NotificacaoService notificacaoService;
     
     private static final int DIAS_VALIDADE_RESERVA = 2;
     private static final int LIMITE_RESERVAS_ATIVAS = 3;
+    private static final int HORAS_AVISO_EXPIRACAO = 24;
 
     @Transactional
     public ReservaDTO criar(ReservaCreateDTO dto) {
@@ -46,6 +48,7 @@ public class ReservaService {
         
         if (livro.isDisponivel() && livro.getQuantidadeEstoque() > 0) {
             reserva.setStatus(StatusReserva.DISPONIVEL);
+            notificacaoService.notificarReservaDisponivel(reserva);
         } else {
             reserva.setStatus(StatusReserva.AGUARDANDO);
         }
@@ -62,6 +65,7 @@ public class ReservaService {
         }
         
         reserva.setStatus(StatusReserva.CANCELADA);
+        notificacaoService.notificarReservaExpirada(reserva);
         return converterParaDTO(reservaRepository.save(reserva));
     }
 
@@ -82,6 +86,7 @@ public class ReservaService {
         for (Reserva reserva : reservasExpiradas) {
             reserva.setStatus(StatusReserva.EXPIRADA);
             reservaRepository.save(reserva);
+            notificacaoService.notificarReservaExpirada(reserva);
             
             // Processa próxima reserva na fila
             processarProximaReserva(reserva.getLivro().getId());
@@ -98,6 +103,23 @@ public class ReservaService {
             proximaReserva.setStatus(StatusReserva.DISPONIVEL);
             proximaReserva.setDataValidade(LocalDateTime.now().plusDays(DIAS_VALIDADE_RESERVA));
             reservaRepository.save(proximaReserva);
+            notificacaoService.notificarReservaDisponivel(proximaReserva);
+        }
+    }
+
+    @Transactional
+    public void verificarReservasExpirando() {
+        LocalDateTime limite = LocalDateTime.now().plusHours(HORAS_AVISO_EXPIRACAO);
+        List<Reserva> reservasExpirando = reservaRepository
+                .findByStatusAndDataValidadeBefore(StatusReserva.DISPONIVEL, limite);
+        
+        for (Reserva reserva : reservasExpirando) {
+            if (!reserva.isNotificado()) {
+                notificacaoService.notificarReservaExpirando(reserva);
+                reserva.setNotificado(true);
+                reserva.setDataNotificacao(LocalDateTime.now());
+                reservaRepository.save(reserva);
+            }
         }
     }
 

@@ -23,4 +23,15 @@ public class ReservaScheduler {
             log.error("Erro ao processar reservas expiradas", e);
         }
     }
+
+    @Scheduled(fixedRate = 3600000) // Executa a cada hora
+    public void verificarReservasExpirando() {
+        log.info("Iniciando verificação de reservas expirando");
+        try {
+            reservaService.verificarReservasExpirando();
+            log.info("Verificação de reservas expirando concluída com sucesso");
+        } catch (Exception e) {
+            log.error("Erro ao verificar reservas expirando", e);
+        }
+    }
 } 
