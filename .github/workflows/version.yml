@@ -1,0 +1,31 @@
+name: Version
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Get version from pom.xml
+      id: version
+      run: |
+        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Bump version
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        mvn versions:set -DnewVersion=${{ steps.version.outputs.version }}
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add pom.xml
+        git commit -m "Bump version to ${{ steps.version.outputs.version }}"
+        git push 

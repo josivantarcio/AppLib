@@ -1,7 +1,36 @@
-target/
-.git/
+# Git
+.git
 .gitignore
-README.md
-*.iml
+
+# Maven
+target/
+!target/*.jar
+
+# IDE
 .idea/
-.vscode/ 
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Logs
+logs/
+*.log
+
+# Test
+src/test/
+
+# Documentation
+*.md
+docs/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Other
+*.swp
+*.swo
+.DS_Store 

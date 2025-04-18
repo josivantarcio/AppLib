@@ -1,0 +1,103 @@
+# Este é um arquivo de exemplo que define os donos do código.
+# Os donos do código serão solicitados para revisão quando alguém abrir um pull request
+# que modifica código que eles possuem.
+
+# Por padrão, o @seu-usuario é o dono de tudo no repositório
+* @seu-usuario
+
+# Configurações específicas para diretórios
+/src/main/java/com/biblioteca/config/ @seu-usuario
+/src/main/java/com/biblioteca/controller/ @seu-usuario
+/src/main/java/com/biblioteca/dto/ @seu-usuario
+/src/main/java/com/biblioteca/model/ @seu-usuario
+/src/main/java/com/biblioteca/repository/ @seu-usuario
+/src/main/java/com/biblioteca/service/ @seu-usuario
+/src/main/java/com/biblioteca/util/ @seu-usuario
+
+# Configurações específicas para arquivos
+/src/main/resources/application.properties @seu-usuario
+/src/main/resources/application-dev.properties @seu-usuario
+/src/main/resources/application-prod.properties @seu-usuario
+/src/main/resources/application-test.properties @seu-usuario
+
+# Configurações específicas para documentação
+README.md @seu-usuario
+CONTRIBUTING.md @seu-usuario
+CODE_OF_CONDUCT.md @seu-usuario
+SECURITY.md @seu-usuario
+CHANGELOG.md @seu-usuario
+CONTRIBUTORS.md @seu-usuario
+ROADMAP.md @seu-usuario
+
+# Configurações específicas para configuração
+.gitignore @seu-usuario
+.gitattributes @seu-usuario
+.editorconfig @seu-usuario
+.env.example @seu-usuario
+docker-compose.yml @seu-usuario
+Dockerfile @seu-usuario
+.dockerignore @seu-usuario
+
+# Configurações específicas para testes
+/src/test/java/com/biblioteca/ @seu-usuario
+
+# Configurações específicas para CI/CD
+.github/workflows/ @seu-usuario
+
+# Configurações específicas para frontend
+/src/main/resources/static/ @seu-usuario
+/src/main/resources/templates/ @seu-usuario
+
+# Configurações específicas para segurança
+/src/main/java/com/biblioteca/security/ @seu-usuario
+
+# Configurações específicas para cache
+/src/main/java/com/biblioteca/cache/ @seu-usuario
+
+# Configurações específicas para logging
+/src/main/java/com/biblioteca/logging/ @seu-usuario
+
+# Configurações específicas para monitoramento
+/src/main/java/com/biblioteca/monitoring/ @seu-usuario
+
+# Configurações específicas para internacionalização
+/src/main/java/com/biblioteca/i18n/ @seu-usuario
+
+# Configurações específicas para backup
+/src/main/java/com/biblioteca/backup/ @seu-usuario
+
+# Configurações específicas para recuperação
+/src/main/java/com/biblioteca/recovery/ @seu-usuario
+
+# Configurações específicas para otimização
+/src/main/java/com/biblioteca/optimization/ @seu-usuario
+
+# Configurações específicas para refatoração
+/src/main/java/com/biblioteca/refactoring/ @seu-usuario
+
+# Configurações específicas para arquitetura
+/src/main/java/com/biblioteca/architecture/ @seu-usuario
+
+# Configurações específicas para documentação
+/src/main/java/com/biblioteca/documentation/ @seu-usuario
+
+# Configurações específicas para testes
+/src/main/java/com/biblioteca/testing/ @seu-usuario
+
+# Configurações específicas para CI/CD
+/src/main/java/com/biblioteca/ci/ @seu-usuario
+
+# Configurações específicas para monitoramento
+/src/main/java/com/biblioteca/monitoring/ @seu-usuario
+
+# Configurações específicas para internacionalização
+/src/main/java/com/biblioteca/i18n/ @seu-usuario
+
+# Configurações específicas para segurança
+/src/main/java/com/biblioteca/security/ @seu-usuario
+
+# Configurações específicas para performance
+/src/main/java/com/biblioteca/performance/ @seu-usuario
+
+# Configurações específicas para usabilidade
+/src/main/java/com/biblioteca/usability/ @seu-usuario 
